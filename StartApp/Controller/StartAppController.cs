@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Diagnostics;
+using Microsoft.Extensions.Options;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -13,16 +14,22 @@ namespace StartApp.Controller
     [ApiController]
     public class StartAppController : ControllerBase
     {
+        public ProgConfig _ProgConfig { get; set; }
+
+
+        public StartAppController(IOptions<ProgConfig> ProgConfig) {
+            _ProgConfig = ProgConfig.Value;
+        }
+
         // GET api/<StartAppController>/5
         [HttpGet("{id}")]
         public string Get(int id)
         {
-            if (id == 1) {
-                Process.Start("notepad");
+            if (_ProgConfig.PList.Count() <= id)
+            {
+                return id.ToString();
             }
-            if (id == 2) {
-                Process.Start(@"C:\Program Files (x86)\Google\Chrome\Application\chrome.exe");
-            }
+            Process.Start(_ProgConfig.PList[id]);
             return id.ToString();
         }
     }

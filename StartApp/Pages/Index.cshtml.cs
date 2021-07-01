@@ -9,6 +9,11 @@ namespace StartApp.Pages
 {
     public class IndexModel : PageModel
     {
+        public string BasePath {
+            get {
+                return System.Environment.CurrentDirectory;
+            }
+        }
         public void OnGet()
         {
         }
