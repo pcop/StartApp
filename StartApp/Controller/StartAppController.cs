@@ -29,7 +29,7 @@ namespace StartApp.Controller
             {
                 return id.ToString();
             }
-            Process.Start(_ProgConfig.PList[id]);
+            Process.Start(_ProgConfig.PList[id].fileName, _ProgConfig.PList[id].arguments ?? string.Empty);
             return id.ToString();
         }
     }

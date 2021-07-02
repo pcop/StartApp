@@ -7,6 +7,16 @@ namespace StartApp
 {
     public class ProgConfig
     {
-        public List<string> PList { get; set; }
+        public Plist[] PList { get; set; }
+
+        public class Plist
+        {
+            public string fileName { get; set; }
+            public string arguments { get; set; }
+        }
     }
+
+
 }
+
+
